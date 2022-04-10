@@ -2,13 +2,52 @@
 
 namespace app\models;
 
-use yii\db\ActiveRecord;
+use Yii;
+use yii\web\IdentityInterface;
 
-class User extends ActiveRecord implements \yii\web\IdentityInterface
+/**
+ * This is the model class for table "user".
+ *
+ * @property int $id
+ * @property string $username
+ * @property string $password
+ * @property string $auth_key
+ * @property string $access_token
+ */
+class User extends \yii\db\ActiveRecord implements IdentityInterface
 {
+    /**
+     * {@inheritdoc}
+     */
     public static function tableName()
     {
         return 'user';
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function rules()
+    {
+        return [
+            [['username', 'password', 'auth_key', 'access_token'], 'required'],
+            [['username'], 'string', 'max' => 55],
+            [['password', 'auth_key', 'access_token'], 'string', 'max' => 255],
+        ];
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function attributeLabels()
+    {
+        return [
+            'id' => 'ID',
+            'username' => 'Username',
+            'password' => 'Password',
+            'auth_key' => 'Auth Key',
+            'access_token' => 'Access Token',
+        ];
     }
 
     /**
