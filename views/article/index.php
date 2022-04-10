@@ -1,10 +1,6 @@
 <?php
 
 use yii\helpers\Html;
-use yii\helpers\Url;
-use yii\grid\ActionColumn;
-use yii\grid\GridView;
-use app\models\Article;
 use yii\widgets\ListView;
 
 /* @var $this yii\web\View */
